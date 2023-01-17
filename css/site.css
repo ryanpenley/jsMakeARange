@@ -79,3 +79,8 @@ footer {
     font-size: 4rem;
     padding-left: .5rem;
 }
+
+.even {
+    font-weight: bolder;
+}
+
