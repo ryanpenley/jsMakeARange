@@ -75,94 +75,130 @@
                 <div class="col-12 col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-js">
-function getValues() {
-
-    // get values from the page
-    let startValue = document.getElementById('startValue').value;
-    let endValue = document.getElementById('endValue').value;
-
-    // parse our inputs as numbers
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
-
-    // verify our inputs ARE numbers
-
-    if (Number.isInteger(startValue) && Number.isInteger(endValue))
-    {
-    // if they are, then generate numbers
-        let numbersArray = generateNumbers(startValue, endValue)
-
-    // then display on the page
-        displayNumbers(numbersArray);
-    } else {
-        // if they are not, tell our user
-        Swal.fire(
-            {
-                icon: 'error',
-                title: 'Oops!',
-                text: 'Only integers are allowed for Range Maker!'
-            }
-        );
-    }
-
-
-
-}
-
-// generate our numbers
-// Logic Function
-function generateNumbers(start, end) {
-
-    let numbers = [];
-
-    for(let value = start; value <= end; value++) {
-        numbers.push(value);
-    }
-
-    return numbers;
-}
-
-// display them on the page
-// View Function
-function displayNumbers(numbersArray) {
-    let tableBody = document.getElementById('results');
-
-    let tableHtml = '';
-
-    for(let i = 0; i < numbersArray.length; i++) {
-        let value = numbersArray[i];
-        let className = '';
-
-        if(value % 2 == 0) {
-            className = 'even';
-        } else {
-            className = 'odd';
-        }
-
-        if (i % 5 == 0) {
-            tableHtml += '<tr>';
-        }
-
-        let tableRow = `<td class="${className}">${value}</td>`;
-
-
-        tableHtml = tableHtml + tableRow;
-
-        if ((i + 1) % 5 == 0) {
-            tableHtml += '</tr>';
-        }
-    }
-
-    tableBody.innerHTML = tableHtml;
-}
+                            // get the user input from the page
+                            // Controller Function
+                            function getValues() {
+                            
+                                // get values from the page
+                                let startValue = document.getElementById('startValue').value;
+                                let endValue = document.getElementById('endValue').value;
+                            
+                                // parse our inputs as numbers
+                                startValue = parseInt(startValue);
+                                endValue = parseInt(endValue);
+                            
+                                // verify our inputs ARE numbers
+                            
+                                if (Number.isInteger(startValue) && Number.isInteger(endValue))
+                                {
+                                // if they are, then generate numbers
+                                    let numbersArray = generateNumbers(startValue, endValue)
+                            
+                                // then display on the page
+                                    displayNumbers(numbersArray);
+                                } else {
+                                    // if they are not, tell our user
+                                    Swal.fire(
+                                        {
+                                            icon: 'error',
+                                            title: 'Oops!',
+                                            text: 'Only integers are allowed for Range Maker!'
+                                        }
+                                    );
+                                }
+                            
+                            
+                            
+                            }
+                            
+                            // generate our numbers
+                            // Logic Function
+                            function generateNumbers(start, end) {
+                            
+                                let numbers = [];
+                            
+                                for(let value = start; value <= end; value++) {
+                                    numbers.push(value);
+                                }
+                            
+                                return numbers;
+                            }
+                            
+                            // display them on the page
+                            // View Function
+                            function displayNumbers(numbersArray) {
+                                let tableBody = document.getElementById('results');
+                            
+                                let tableHtml = '';
+                            
+                                for(let i = 0; i < numbersArray.length; i++) {
+                                    let value = numbersArray[i];
+                                    let className = '';
+                            
+                                    if(value % 2 == 0) {
+                                        className = 'even';
+                                    } else {
+                                        className = 'odd';
+                                    }
+                            
+                                    if (i % 5 == 0) {
+                                        tableHtml += '<tr>';
+                                    }
+                            
+                                    let tableRow = `<td class="${className}">${value}</td>`;
+                            
+                            
+                                    tableHtml = tableHtml + tableRow;
+                            
+                                    if ((i + 1) % 5 == 0) {
+                                        tableHtml += '</tr>';
+                                    }
+                                }
+                            
+                                tableBody.innerHTML = tableHtml;
+                            }
                         </code>
                     </pre>
                 </div>
                 <!-- Code Description -->
                 <div class="col-12 col-lg-4">
-                    <p>The code is structured in mutiple functions that utilizes for loops and boolean logic to complete the coding challenge.</p>
+                    <p>The code is structured in mutiple functions that utilizes for loops and boolean logic to complete
+                        the coding challenge.</p>
                     <h5><code>function getValues()</code></h5>
-                    <p>Gets the values from the users input. Verifies they're numbers. Sends the numbers to the generateNumbers function and reclassifies them as an array. Then it sends that array to the displayNumbers function.</p>
+                    <p>
+                        This is the main function and is called when a user submits values for a range of numbers on the
+                        page. It uses the
+                        document.getElementById() method to retrieve the start and end values that the user has
+                        submitted. These values
+                        are then parsed as ints via the parseInt() method and are checked to ensure they are ints using
+                        the Number.isInteger().
+                        If the inputs are numbers the generateNumbers function is called and passed to start and end
+                        values, if the inputs are
+                        not ints then a Sweet Alert error message is thrown.
+                    </p>
+                    <h5><code>function generateNumbers()</code></h5>
+                    <p>
+                        This function creates an empty array and then uses a for loop to generate a sequence of numbers
+                        starting
+                        from the start value and ending at the end value. Each number is added to the array using the
+                        push() method, and the
+                        resulting array is returned to the calling function.
+                    </p>
+                    <h5><code>function displayNumbers()</code></h5>
+                    <p>
+                        This function takes the array of numbers generated by generateNumbers() and creates an HTML
+                        table to display them.
+                        The function starts by getting the element with an id of "results" on the page and storing it in
+                        a variable.
+                        It then uses a for loop to iterate through each number in the array, classifies each number as
+                        odd or even
+                        using a conditional statement, and then creates an HTML table cell (td) with a class name of
+                        either "even" or "odd".
+                        If the index of the number is divisible by 5, the function creates a new HTML table row (tr).
+                        The resulting HTML is stored in a variable, and finally, the HTML for the entire table is
+                        inserted into the "results"
+                        element using the innerHTML property.
+                    </p>
                 </div>
             </div>
         </main>
@@ -177,9 +213,12 @@ function displayNumbers(numbersArray) {
                         <img src="/img/RPWhite logo - no background.svg" height="60">
                     </div>
                     <div class="col text-center text-lg-center">
-                        <a href="https://www.linkedin.com/in/ryan-penley-459892102/" target="_blank" class="socialicons"><i class="bi bi-linkedin"></i></a>
-                        <a href="https://twitter.com/ryanpenleydev" target="_blank" class="socialicons"><i class="bi bi-twitter"></i></a>
-                        <a href="https://github.com/ryanpenley?tab=repositories" target="_blank" class="socialicons"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/ryan-penley-459892102/" target="_blank"
+                            class="socialicons"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://twitter.com/ryanpenleydev" target="_blank" class="socialicons"><i
+                                class="bi bi-twitter"></i></a>
+                        <a href="https://github.com/ryanpenley?tab=repositories" target="_blank" class="socialicons"><i
+                                class="bi bi-github"></i></a>
                     </div>
                 </div>
             </div>
